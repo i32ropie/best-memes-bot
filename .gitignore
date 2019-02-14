@@ -3,6 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# vscode stuff
+.vscode
+
+# Development files/folders
+tester.py
+memesloader/
+
 # C extensions
 *.so
 
