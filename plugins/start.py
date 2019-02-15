@@ -31,13 +31,6 @@ def command_start(m):
             })
         bot.send_message(cid, responses[utils.lang(cid)]['start'])
         for id in admins:
-            bot.send_message(id, "Nuevo usuario\n\nNombre: " +
-                                str(m.from_user.first_name) +
-                                "\nAlias: @" +
-                                str(m.from_user.username) +
-                                "\nID: " +
-                                str(cid) +
-                                "\nIdioma: " +
-                                str(utils.lang(cid)))
+            bot.send_message(id, f"Nuevo usuario: [{cid}](tg://user?id={cid})", parse_mode="Markdown")
     else:
         bot.send_message(cid, responses[utils.lang(cid)]['already_started'])

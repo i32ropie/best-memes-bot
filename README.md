@@ -70,5 +70,14 @@ In the late future, and only if the bot grows enough, I would really like to cre
 
 # Changelog
 
+## 15-02-2019 | 2
+
+Now, when I send a meme to the bot, it is added to the database. I have also updated the memes structure to save the uploader, the reviewer and how many saves it has (despite only I can send memes yet and nobody can save 'em xD)
+
+I have also changed the message I get with new users but I don't really like it, I have to update it yet.
+
+The last change was in the template, changing the word of the command to make it easier the change of it while developing a new plugin based on the template.
+
 ## 15-02-2019
+
 First commit :)
