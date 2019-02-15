@@ -16,7 +16,7 @@ users = db.users
 memes = db.memes
 
 bot = telebot.TeleBot(utils.get_config_item('token'))
-telebot.logger.setLevel(logging.DEBUG)
+telebot.logger.setLevel(utils.get_config_item('logging_level'))
 
 admins = utils.get_config_item('admins')
 mods = utils.get_config_item('mods')
