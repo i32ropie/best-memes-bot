@@ -3,5 +3,7 @@
     "no_more",
     "already_started",
     "already_stopped",
-    "stop"
+    "stop",
+    "contact_1",
+    "contact_2"
 ]

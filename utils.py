@@ -4,6 +4,12 @@ import sys
 import config
 
 
+def get_user_step(uid):
+    if str(uid) not in config.user_step or is_banned(uid):
+        config.user_step[str(uid)] = 0
+    return config.user_step[str(uid)]
+
+
 def random_meme(uid = None):
     # We search for a new random meme, excluding the list of memes already seen by the user
     exclude = config.users.find_one(str(uid))['memes'] if is_user(uid) else []
@@ -118,3 +124,19 @@ def is_int(s):
     if s[0] in ('-', '+'):
         return s[1:].isdigit()
     return s.isdigit()
+
+
+def contact_format(m):
+    name = m.from_user.first_name
+    alias = str(m.from_user.username)
+    cid = str(m.chat.id)
+    uid = str(m.from_user.id)
+    m_id = str(m.message_id)
+    msg = m.text
+    if cid == uid:
+        txt = "Nuevo mensaje\n\nNombre: " + name + "\nAlias: @" + alias + "\nIdioma: " + \
+            lang(cid) + "\nM_ID: " + m_id + "\nID: " + cid + "\n\nMensaje: " + msg
+    else:
+        txt = "Nuevo mensaje\n\nNombre: " + name + "\nAlias: @" + alias + "\nIdioma: " + lang(
+            cid) + "\nM_ID: " + m_id + "\nID: " + cid + "\nUID: " + uid + "\n\nMensaje: " + msg
+    return txt

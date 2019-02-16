@@ -1,7 +1,9 @@
 # best-memes-bot
+
 Source code of the Telegram bot [@best_memes_bot](https://t.me/best_memes_bot)
 
-# The idea
+## The idea
+
 The main idea of the bot is to have somewhere to get random memes. The bot starts with some memes I already had (~700), and keep track of which memes have been seen by the user so you never get a meme repeated. The idea is to have a system that allows everybody to send their memes, and then it get aproved or rejected by some mod. I would also like to implement a recommeder system so when a user request a new meme, it will try to a meme that the user will enjoy.
 
 The new memes flow would go as:
@@ -14,19 +16,19 @@ The new memes flow would go as:
 
 I would actually like to store the reviewer of every meme, and also link the meme to the user that uploaded it so in the future I can get some stats and maybe reward the users that upload the most memes.
 
-# Development stage
+## Development stage
 
 The bot is currently in an early stage of the development, I actually just started the bot yesterday (13-02-2019) and there is a lot of work to do. It just let users register with `/start` and `/stop` and send a random meme with `/meme` (This already stores the meme as seen by the user and also increases the views count on the meme).
 
-# TODO
+## TODO
 
-- [ ] Add basic admin tools
+- [x] Add basic admin tools
 
-Add the ability of ban users, send broadcast messages, restart the bot, execute python code, send messages, check for github updates, mod people etc.
+Add the ability of ban users, send broadcast messages, restart the bot, execute python code, send messages, check for github updates.
 
-- [ ] Add basic tools
+- [x] Add basic tools
 
-Let users contact me, get bot stats and their own info.
+Let users contact me.
 
 - [ ] Add `/memes` command
 
@@ -35,6 +37,10 @@ This command will show a random meme, and an inline keyboard with three buttons:
 - [ ] Add `/saved` command
 
 This command will work as `/memes` but just navigating through the saved memes (So the user can see easily the memes he likes).
+
+- [ ] Add extra functionalities for admins and users
+
+Let admins set mods and let users get their stats / info.
 
 - [ ] Upload the bot strings to Transifex
 
@@ -64,13 +70,30 @@ Would be nice to know who reviewed what.
 
 A button in the memes navigation inline keyboard to allow users to report memes. When reported, the user has to explain why he reports the meme and I think the best idea is that I personally review it. This way I think I could identify if a mod isn't reviewing memes correctly.
 
-# Lategame
+## Lategame
 
 In the late future, and only if the bot grows enough, I would really like to create a recommender system.
 
-# Changelog
+## Changelog
 
-## 15-02-2019 | 2
+### 16-02-2019
+
+Added admin tools for:
+
+- Ban and unban users.
+- Broadcast messages.
+- Reload the bot.
+- Execute code.
+- Check for github updates and reload the bot if there is any.
+- Send messages to certain IDs.
+- Reply to users contact messages.
+- Command to check admin commands.
+
+Added user tools for:
+
+- Contact the admins.
+
+### 15-02-2019 | 2
 
 Now, when I send a meme to the bot, it is added to the database. I have also updated the memes structure to save the uploader, the reviewer and how many saves it has (despite only I can send memes yet and nobody can save 'em xD)
 
@@ -78,6 +101,6 @@ I have also changed the message I get with new users but I don't really like it,
 
 The last change was in the template, changing the word of the command to make it easier the change of it while developing a new plugin based on the template.
 
-## 15-02-2019
+### 15-02-2019
 
 First commit :)

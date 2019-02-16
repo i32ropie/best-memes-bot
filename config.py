@@ -22,3 +22,5 @@ admins = utils.get_config_item('admins')
 mods = utils.get_config_item('mods')
 
 responses = {x.split('.')[0]:json.load(open('locale/{}'.format(x), encoding='utf-8'), object_pairs_hook=OrderedDict) for x in os.listdir('locale')}
+
+user_step = dict()

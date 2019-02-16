@@ -3,5 +3,7 @@
     "no_more": "\u00a1Ya has visto todos los memes!",
     "already_started": "Ya eres usuario :)",
     "already_stopped": "Ya estabas desuscrito :'(",
-    "stop": "Esto ha hecho llorar a Pepe :'(\n\nGracias por usar el bot :)"
+    "stop": "Esto ha hecho llorar a Pepe :'(\n\nGracias por usar el bot :)",
+    "contact_1": "Escribe el mensaje que quieras enviarme.",
+    "contact_2": "El mensaje ha sido enviado con \u00e9xito."
 }
