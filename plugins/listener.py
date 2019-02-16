@@ -6,7 +6,7 @@ def listener(messages):
     for m in messages:
         cid = m.chat.id
         uid = m.from_user.id
-        if utils.is_admin(uid):
+        if utils.is_admin(cid):
             if m.content_type == "photo":
                 file_id = m.photo[-1].file_id
                 if not memes.find_one(file_id):
