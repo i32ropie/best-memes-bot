@@ -185,6 +185,6 @@ def callback_report(call):
         meme_info = memes.find_one(meme)
         message = f"❌ Meme reportado ❌\n\nID Meme: <code>{meme}</code>\nMeme revisado por: <a href=\"tg://user?id={meme_info['reviewer']}\">{meme_info['reviewer']}</a>\nIdioma: {utils.lang(cid)}\nID mensaje: {call.message.message_id}\nID reportador: <a href=\"tg://user?id={cid}\">{cid}</a>"
         for x in admins:
-            bot.send_photo(x, meme, parse_mode="html")
+            bot.send_photo(x, meme, caption=message, parse_mode="html")
     else:
         bot.answer_callback_query(call.id, responses[utils.lang(cid)]['already_reported'])
