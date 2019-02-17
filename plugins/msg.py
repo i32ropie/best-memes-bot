@@ -13,7 +13,7 @@ def command_msg(m):
         bot.send_message(cid, "Error. Debes introducir `/msg <ID> [!] <Mensaje>` | Empieza el mensaje con *!* para usar Markdown", parse_mode="Markdown")
         return
     c_id = m.text.split(None,2)[1]
-    answer = m.text.split(None, 2)[3]
+    answer = m.text.split(None, 2)[2]
     parse_mode = "Markdown" if answer.startswith('!') else None
     try:
         bot.send_message(
