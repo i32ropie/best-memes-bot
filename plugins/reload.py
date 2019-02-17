@@ -10,4 +10,4 @@ from config import *
 def command_reload(m):
     cid = m.chat.id
     bot.send_message(cid, "Reiniciando el bot...")
-    os.popen("pm2 restart 0")
+    os.popen("kill -9 `ps aux | grep bot | grep -v grep |  awk '{print $2}'`")
