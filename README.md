@@ -76,6 +76,10 @@ In the late future, and only if the bot grows enough, I would really like to cre
 
 ## Changelog
 
+### 17-02-2019 | 4
+
+- Updated the `/memes` command to handle correctly the use of users that have already seen all the bot memes.
+
 ### 17-02-2019 | 3
 
 - Updated the callback_data for those that used the memes' file_id to shorter ones to prevent long file_ids creating invalid inline buttons.
