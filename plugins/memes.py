@@ -63,7 +63,11 @@ def callback_newmeme(call):
     keyboard.add(save_button)
     report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'r {meme}')
     keyboard.add(report_button)
-    bot.edit_message_media(types.InputMediaPhoto(meme, parse_mode='html'), cid, mid, reply_markup=keyboard)
+    try:
+        bot.edit_message_media(types.InputMediaPhoto(meme, parse_mode='html'), cid, mid, reply_markup=keyboard)
+    except Exception as e:
+        for cid in admins:
+            bot.send_message(cid, utils.send_exception(e), parse_mode="Markdown")
 
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith('m '))
@@ -90,6 +94,8 @@ def callback_meme(call):
             next_button = None
     if prev_meme:
         prev_button = types.InlineKeyboardButton('⬅️', callback_data=f'm {prev_meme}')
+    else:
+        prev_button = None
     if next_button and prev_button:
         keyboard.add(prev_button, next_button)
     if next_button and not prev_button:
@@ -100,7 +106,11 @@ def callback_meme(call):
     keyboard.add(save_button)
     report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'r {meme}')
     keyboard.add(report_button)
-    bot.edit_message_media(types.InputMediaPhoto(meme, parse_mode='html'), cid, mid, reply_markup=keyboard)
+    try:
+        bot.edit_message_media(types.InputMediaPhoto(meme, parse_mode='html'), cid, mid, reply_markup=keyboard)
+    except Exception as e:
+        for cid in admins:
+            bot.send_message(cid, utils.send_exception(e), parse_mode="Markdown")
 
 
 @bot.callback_query_handler(func=lambda call: call.data.startswith('s '))

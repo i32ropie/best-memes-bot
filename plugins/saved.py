@@ -56,4 +56,8 @@ def callback_meme(call):
         keyboard.add(prev_button)    
     save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['delete_meme'], callback_data=f'u {meme}')
     keyboard.add(save_button)
-    bot.edit_message_media(types.InputMediaPhoto(meme, parse_mode='html'), cid, mid, reply_markup=keyboard)
+    try:
+        bot.edit_message_media(types.InputMediaPhoto(meme, parse_mode='html'), cid, mid, reply_markup=keyboard)
+    except Exception as e:
+        for cid in admins:
+            bot.send_message(cid, utils.send_exception(e), parse_mode="Markdown")

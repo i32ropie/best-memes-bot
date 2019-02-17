@@ -26,6 +26,16 @@ def listener(messages):
                 else:
                     bot.send_message(cid, responses[utils.lang(cid)]['alredy_stored'])
         else:
+            if m.content_type == "text":
+                if cid > 0:
+                    log_line = "<" + str(m.message_id) + "> " + time.strftime("%d %b %Y %H:%M:%S ", time.localtime()) + str(
+                        m.from_user.first_name) + " (@" + str(m.from_user.username) + ") <- [" + str(cid) + "]: " + m.text + "\n"
+                else:
+                    log_line = "<" + str(m.message_id) + "> " + time.strftime("%d %b %Y %H:%M:%S ", time.localtime()) + str(
+                        m.from_user.first_name) + " (@" + str(m.from_user.username) + ") <- [" + str(uid) + "][" + str(cid) + "]: " + m.text + "\n"
+                if str(cid) in filtered:
+                    for x in admins:
+                        bot.send_message(x, log_line)
             if m.content_type == "photo":
                 file_id = m.photo[-1].file_id
                 if len(file_id) > 62:

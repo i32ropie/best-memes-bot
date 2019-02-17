@@ -159,3 +159,8 @@ The only remaining things to do are not actually that important for the early st
 * Updated the arrows of the inline keyboard to make them easier to see
 * Removed the meme file_id caption
 * Updated the structure of the README
+
+###### [6] <a name="17-02-19-6"></a>
+
+* Added a command to filter chats and make it easier the communication with the users
+* Added a try/catch block when editing messages, to find when the bot tries to edit a message with the same content as before
