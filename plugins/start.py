@@ -27,10 +27,44 @@ def command_start(m):
                 "notify": True,
                 "returns": [],
                 "memes": [],
-                "saved": []
+                "saved": [],
+                "reported": []
             })
-        bot.send_message(cid, responses[utils.lang(cid)]['start'])
+        keyboard = types.InlineKeyboardMarkup()
+        keyboard.add(types.InlineKeyboardButton(responses[utils.lang(cid)]['start_message'], callback_data='start'))
+        bot.send_message(cid, responses[utils.lang(cid)]['start'], parse_mode="Markdown", reply_markup=keyboard)
         for id in admins:
-            bot.send_message(id, f"Nuevo usuario: [{cid}](tg://user?id={cid})", parse_mode="Markdown")
+            bot.send_message(id, "Nuevo usuario\n\nNombre: " +
+                                 str(m.from_user.first_name) +
+                                 "\nAlias: @" +
+                                 str(m.from_user.username) +
+                                 "\nID: " +
+                                 str(cid) +
+                                 "\nIdioma: " +
+                                 str(ulang))
     else:
         bot.send_message(cid, responses[utils.lang(cid)]['already_started'])
+
+
+@bot.callback_query_handler(func=lambda call: call.data == 'start')
+def callback_start(call):
+    cid = call.message.chat.id
+    # mid = call.message.message_id
+    keyboard = types.InlineKeyboardMarkup()
+    chat_memes = users.find_one(str(cid))['memes']
+    prev_meme = chat_memes[-1] if chat_memes else None
+    next_button = types.InlineKeyboardButton('->', callback_data='newmeme')
+    if prev_meme:
+        prev_button = types.InlineKeyboardButton('<-', callback_data=f'meme {prev_meme}')
+        keyboard.add(prev_button, next_button)
+    else:
+        keyboard.add(next_button)
+    meme = utils.random_meme(cid)
+    if meme:
+        save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['save_meme'], callback_data=f'save {meme}')
+        keyboard.add(save_button)
+        report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'report {meme}')
+        keyboard.add(report_button)
+        bot.send_photo(cid, meme, caption=f'<code>{meme}</code>', reply_markup=keyboard, parse_mode='html')
+    else:
+        bot.send_message(cid, responses[utils.lang(cid)]['no_more'])

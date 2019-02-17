@@ -30,11 +30,11 @@ Add the ability of ban users, send broadcast messages, restart the bot, execute 
 
 Let users contact me.
 
-- [ ] Add `/memes` command
+- [x] Add `/memes` command
 
 This command will show a random meme, and an inline keyboard with three buttons: one to go to the previous seen meme, one to go to a new meme (next meme if the user used before the one to navigate to a previous meme), one to save the meme.
 
-- [ ] Add `/saved` command
+- [x] Add `/saved` command
 
 This command will work as `/memes` but just navigating through the saved memes (So the user can see easily the memes he likes).
 
@@ -54,19 +54,19 @@ Right now the bot automatically gets the user language from Telegram, but in the
 
 I just added ~700 memes but none of them have any category yet.
 
-- [ ] Add the 'upload meme' infrastructure
+- [x] Add the 'upload meme' infrastructure
 
 Gotta make something to let the users upload new memes.
 
-- [ ] Add creator to the memes and list of created memes to the users
+- [x] Add creator to the memes and list of created memes to the users
 
 As said before, I would like to let users upload memes, and if in the future I reward any of them, I will probably take that in count.
 
-- [ ] Add the reviewer to the memes
+- [x] Add the reviewer to the memes
 
 Would be nice to know who reviewed what.
 
-- [ ] Button to report a meme
+- [x] Button to report a meme
 
 A button in the memes navigation inline keyboard to allow users to report memes. When reported, the user has to explain why he reports the meme and I think the best idea is that I personally review it. This way I think I could identify if a mod isn't reviewing memes correctly.
 
@@ -75,6 +75,20 @@ A button in the memes navigation inline keyboard to allow users to report memes.
 In the late future, and only if the bot grows enough, I would really like to create a recommender system.
 
 ## Changelog
+
+### 17-02-2019
+
+Tonight I have actually done a lot of work. I think the bot is actually prepared for a release. I have done:
+
+- Now the bot no longer has the command `/meme` but `/memes`, which lets you navigate through all the memes stored in the bot, save the memes you like and report the memes you find wrong.
+- Improved the `/start` message, adding an inline button that works as typing `/memes`, making it easier the first use.
+- Added a `/help` command where the user can see commands he can use.
+- Added a `/info` command to display a bit of info about the bot.
+- Added a good report system, making it easy how to report memes, and also making it easy how to answer to the reports.
+- Now users can send memes to the bot and I will be able to easily accept or decline the meme.
+- Added a `/saved` command where the user can navigate through his saved memes.
+
+The only remaining things to do are not actually that important for the early stages of the bot, so tomorrow I will start spreading the word.
 
 ### 16-02-2019
 

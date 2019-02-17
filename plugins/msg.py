@@ -10,7 +10,7 @@ from config import *
 def command_msg(m):
     cid = m.chat.id
     if len(m.text.split()) < 3:
-        bot.send_message(cid, "Error. Debes introducir `/msg <ID> [!] <Mensaje>` | Empieza el mensaje con *!* para usar Markdown")
+        bot.send_message(cid, "Error. Debes introducir `/msg <ID> [!] <Mensaje>` | Empieza el mensaje con *!* para usar Markdown", parse_mode="Markdown")
         return
     c_id = m.text.split(None,2)[1]
     answer = m.text.split(None, 2)[3]
