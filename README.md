@@ -38,22 +38,6 @@ This command will show a random meme, and an inline keyboard with three buttons:
 
 This command will work as `/memes` but just navigating through the saved memes (So the user can see easily the memes he likes).
 
-- [ ] Add extra functionalities for admins and users
-
-Let admins set mods and let users get their stats / info.
-
-- [ ] Upload the bot strings to Transifex
-
-Since the bot will be an open source, I would like to have the strings uploaded to Transifex, just in case someone wants to use the bot in their own language and want to help to translate it.
-
-- [ ] Let the users decide their language
-
-Right now the bot automatically gets the user language from Telegram, but in the future would be nice to let users decide their language.
-
-- [ ] Add categories to the memes I already have
-
-I just added ~700 memes but none of them have any category yet.
-
 - [x] Add the 'upload meme' infrastructure
 
 Gotta make something to let the users upload new memes.
@@ -70,11 +54,32 @@ Would be nice to know who reviewed what.
 
 A button in the memes navigation inline keyboard to allow users to report memes. When reported, the user has to explain why he reports the meme and I think the best idea is that I personally review it. This way I think I could identify if a mod isn't reviewing memes correctly.
 
+- [ ] Add extra functionalities for admins and users
+
+Let admins set mods and let users get their stats / info.
+
+- [ ] Upload the bot strings to Transifex
+
+Since the bot will be an open source, I would like to have the strings uploaded to Transifex, just in case someone wants to use the bot in their own language and want to help to translate it.
+
+- [ ] Let the users decide their language
+
+Right now the bot automatically gets the user language from Telegram, but in the future would be nice to let users decide their language.
+
+- [ ] Add categories to the memes I already have
+
+I just added ~700 memes but none of them have any category yet.
+
 ## Lategame
 
 In the late future, and only if the bot grows enough, I would really like to create a recommender system.
 
 ## Changelog
+
+### 17-02-2019 | 2
+
+- Fixed a small typo in the bot strings + added a bit more info in the `/start` command
+- Changed TODO's order to leave the undone work in the botton
 
 ### 17-02-2019
 
