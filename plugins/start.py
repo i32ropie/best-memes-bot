@@ -49,13 +49,12 @@ def command_start(m):
 @bot.callback_query_handler(func=lambda call: call.data == 'start')
 def callback_start(call):
     cid = call.message.chat.id
-    # mid = call.message.message_id
     keyboard = types.InlineKeyboardMarkup()
     chat_memes = users.find_one(str(cid))['memes']
     prev_meme = chat_memes[-1] if chat_memes else None
-    next_button = types.InlineKeyboardButton('->', callback_data='newmeme')
+    next_button = types.InlineKeyboardButton('➡️', callback_data='newmeme')
     if prev_meme:
-        prev_button = types.InlineKeyboardButton('<-', callback_data=f'm {prev_meme}')
+        prev_button = types.InlineKeyboardButton('⬅️', callback_data=f'm {prev_meme}')
         keyboard.add(prev_button, next_button)
     else:
         keyboard.add(next_button)
@@ -65,6 +64,6 @@ def callback_start(call):
         keyboard.add(save_button)
         report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'r {meme}')
         keyboard.add(report_button)
-        bot.send_photo(cid, meme, caption=f'<code>{meme}</code>', reply_markup=keyboard, parse_mode='html')
+        bot.send_photo(cid, meme, reply_markup=keyboard, parse_mode='html')
     else:
         bot.send_message(cid, responses[utils.lang(cid)]['no_more'])
