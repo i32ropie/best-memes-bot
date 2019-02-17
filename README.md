@@ -76,6 +76,11 @@ In the late future, and only if the bot grows enough, I would really like to cre
 
 ## Changelog
 
+### 17-02-2019 | 3
+
+- Updated the callback_data for those that used the memes' file_id to shorter ones to prevent long file_ids creating invalid inline buttons.
+- Restricted memes with file_ids longer than 62. (I haven't seen one in more than 2k file_ids but better control the posibility)
+
 ### 17-02-2019 | 2
 
 - Fixed a small typo in the bot strings + added a bit more info in the `/start` command

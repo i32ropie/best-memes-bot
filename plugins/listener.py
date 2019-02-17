@@ -9,6 +9,9 @@ def listener(messages):
         if utils.is_admin(cid):
             if m.content_type == "photo":
                 file_id = m.photo[-1].file_id
+                if len(file_id) > 62:
+                    bot.send_message(cid, responses[utils.lang(cid)]['file_id_long'])
+                    return
                 if not memes.find_one(file_id):
                     memes.insert_one({
                         "_id": file_id,
@@ -25,11 +28,17 @@ def listener(messages):
         else:
             if m.content_type == "photo":
                 file_id = m.photo[-1].file_id
+                if len(file_id) > 62:
+                    bot.send_message(cid, responses[utils.lang(cid)]['file_id_long'])
+                    message = f"😢 Meme recibido pero con file_id demasiado largo 😢\n\nID Meme: <code>{file_id}</code>\nIdioma: {utils.lang(cid)}\nFecha envío: {m.date}\nID mensaje: {m.message_id}\nID creador: <a href=\"tg://user?id={cid}\">{cid}</a>"
+                    for x in admins:
+                        bot.send_photo(x, file_id, caption=message, parse_mode="html")
+                    return
                 if not memes.find_one(file_id):
                     bot.send_message(cid, responses[utils.lang(cid)]['review'])
                     keyboard = types.InlineKeyboardMarkup()
-                    accept = types.InlineKeyboardButton("✅", callback_data=f"accept {file_id}")
-                    decline = types.InlineKeyboardButton("❌", callback_data=f"reject {file_id}")
+                    accept = types.InlineKeyboardButton("✅", callback_data=f"A {file_id}")
+                    decline = types.InlineKeyboardButton("❌", callback_data=f"R {file_id}")
                     keyboard.add(accept, decline)
                     message = f"🔔 Meme recibido 🔔\n\nID Meme: <code>{file_id}</code>\nIdioma: {utils.lang(cid)}\nFecha envío: {m.date}\nID mensaje: {m.message_id}\nID creador: <a href=\"tg://user?id={cid}\">{cid}</a>"
                     for x in admins:
@@ -41,7 +50,7 @@ def listener(messages):
 bot.set_update_listener(listener)
 
 
-@bot.callback_query_handler(func=lambda call: call.data.startswith('accept'))
+@bot.callback_query_handler(func=lambda call: call.data.startswith('A '))
 def callback_accept(call):
     cid = call.message.chat.id
     mid = call.message.message_id
@@ -67,7 +76,7 @@ def callback_accept(call):
     bot.edit_message_caption(message, cid, mid, parse_mode="html")
 
 
-@bot.callback_query_handler(func=lambda call: call.data.startswith('reject'))
+@bot.callback_query_handler(func=lambda call: call.data.startswith('R '))
 def callback_reject(call):
     cid = call.message.chat.id
     mid = call.message.message_id

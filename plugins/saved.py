@@ -21,15 +21,15 @@ def command_saved(m):
     else:
         next_meme = None
     if next_meme:
-        next_button = types.InlineKeyboardButton('->', callback_data=f'Saved {next_meme}')
+        next_button = types.InlineKeyboardButton('->', callback_data=f'S {next_meme}')
         keyboard.add(next_button)
     meme = saved_memes[0]
-    save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['delete_meme'], callback_data=f'save {meme}')
+    save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['delete_meme'], callback_data=f'u {meme}')
     keyboard.add(save_button)
     bot.send_photo(cid, meme, caption=f'<code>{meme}</code>', reply_markup=keyboard, parse_mode='html')
 
 
-@bot.callback_query_handler(func=lambda call: call.data.startswith('Saved'))
+@bot.callback_query_handler(func=lambda call: call.data.startswith('S '))
 def callback_meme(call):
     cid = call.message.chat.id
     mid = call.message.message_id
@@ -45,15 +45,15 @@ def callback_meme(call):
     except:
         next_meme = None
     if next_meme:
-        next_button = types.InlineKeyboardButton('->', callback_data=f'Saved {next_meme}')
+        next_button = types.InlineKeyboardButton('->', callback_data=f'S {next_meme}')
     if prev_meme:
-        prev_button = types.InlineKeyboardButton('<-', callback_data=f'Saved {prev_meme}')
+        prev_button = types.InlineKeyboardButton('<-', callback_data=f'S {prev_meme}')
     if next_meme and prev_meme:
         keyboard.add(prev_button, next_button)
     if next_meme and not prev_meme:
         keyboard.add(next_button)
     if not next_meme and prev_meme:
         keyboard.add(prev_button)    
-    save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['delete_meme'], callback_data=f'unsave {meme}')
+    save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['delete_meme'], callback_data=f'u {meme}')
     keyboard.add(save_button)
     bot.edit_message_media(types.InputMediaPhoto(meme, caption=f'<code>{meme}</code>', parse_mode='html'), cid, mid, reply_markup=keyboard)

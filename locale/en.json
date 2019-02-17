@@ -24,5 +24,6 @@
     "delete_meme": "Delete",
     "already_saved": "You have already saved the meme.",
     "already_unsaved": "You have already unsaved the meme.",
-    "no_saved": "You haven't saved any meme yet :)"
+    "no_saved": "You haven't saved any meme yet :)",
+    "file_id_long": "Sorry but file_id of the meme you just sent is too long for the bot \ud83d\ude22\n\nTry sending a different one \u2764\ufe0f"
 }

@@ -16,15 +16,15 @@ def command_memes(m):
     prev_meme = chat_memes[-1] if chat_memes else None
     next_button = types.InlineKeyboardButton('->', callback_data='newmeme')
     if prev_meme:
-        prev_button = types.InlineKeyboardButton('<-', callback_data=f'meme {prev_meme}')
+        prev_button = types.InlineKeyboardButton('<-', callback_data=f'm {prev_meme}')
         keyboard.add(prev_button, next_button)
     else:
         keyboard.add(next_button)
     meme = utils.random_meme(cid)
     if meme:
-        save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['save_meme'], callback_data=f'save {meme}')
+        save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['save_meme'], callback_data=f's {meme}')
         keyboard.add(save_button)
-        report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'report {meme}')
+        report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'r {meme}')
         keyboard.add(report_button)
         bot.send_photo(cid, meme, caption=f'<code>{meme}</code>', reply_markup=keyboard, parse_mode='html')
     else:
@@ -38,7 +38,7 @@ def callback_newmeme(call):
     keyboard = types.InlineKeyboardMarkup()
     chat_memes = users.find_one(str(cid))['memes']
     prev_meme = chat_memes[-1] if chat_memes else None
-    prev_button = types.InlineKeyboardButton('<-', callback_data=f'meme {prev_meme}')
+    prev_button = types.InlineKeyboardButton('<-', callback_data=f'm {prev_meme}')
     if len(chat_memes) != memes.find().count():
         next_button = types.InlineKeyboardButton('->', callback_data='newmeme')
         keyboard.add(prev_button, next_button)
@@ -46,16 +46,16 @@ def callback_newmeme(call):
         keyboard.add(prev_button)
     meme = utils.random_meme(cid)
     if meme:
-        save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['save_meme'], callback_data=f'save {meme}')
+        save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['save_meme'], callback_data=f's {meme}')
         keyboard.add(save_button)
-        report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'report {meme}')
+        report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'r {meme}')
         keyboard.add(report_button)
         bot.edit_message_media(types.InputMediaPhoto(meme, caption=f'<code>{meme}</code>', parse_mode='html'), cid, mid, reply_markup=keyboard)
     else:
         bot.edit_message_text(responses[utils.lang(cid)]['no_more'], cid, mid)
 
 
-@bot.callback_query_handler(func=lambda call: call.data.startswith('meme'))
+@bot.callback_query_handler(func=lambda call: call.data.startswith('m '))
 def callback_meme(call):
     cid = call.message.chat.id
     mid = call.message.message_id
@@ -71,25 +71,25 @@ def callback_meme(call):
     except:
         next_meme = None
     if next_meme:
-        next_button = types.InlineKeyboardButton('->', callback_data=f'meme {next_meme}')
+        next_button = types.InlineKeyboardButton('->', callback_data=f'm {next_meme}')
     else:
         next_button = types.InlineKeyboardButton('->', callback_data='newmeme')
     if prev_meme:
-        prev_button = types.InlineKeyboardButton('<-', callback_data=f'meme {prev_meme}')
+        prev_button = types.InlineKeyboardButton('<-', callback_data=f'm {prev_meme}')
         keyboard.add(prev_button, next_button)
     else:
         keyboard.add(next_button)
     if meme:
-        save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['save_meme'], callback_data=f'save {meme}')
+        save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['save_meme'], callback_data=f's {meme}')
         keyboard.add(save_button)
-        report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'report {meme}')
+        report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'r {meme}')
         keyboard.add(report_button)
         bot.edit_message_media(types.InputMediaPhoto(meme, caption=f'<code>{meme}</code>', parse_mode='html'), cid, mid, reply_markup=keyboard)
     else:
         bot.edit_message_text(responses[utils.lang(cid)]['no_more'], cid, mid)
 
 
-@bot.callback_query_handler(func=lambda call: call.data.startswith('save'))
+@bot.callback_query_handler(func=lambda call: call.data.startswith('s '))
 def callback_save(call):
     cid = call.message.chat.id
     saved_memes = users.find_one(str(cid))['saved']
@@ -120,7 +120,7 @@ def callback_save(call):
         bot.answer_callback_query(call.id, responses[utils.lang(cid)]['already_saved'])
 
 
-@bot.callback_query_handler(func=lambda call: call.data.startswith('unsave'))
+@bot.callback_query_handler(func=lambda call: call.data.startswith('u '))
 def callback_unsave(call):
     cid = call.message.chat.id
     saved_memes = users.find_one(str(cid))['saved']
@@ -151,7 +151,7 @@ def callback_unsave(call):
         bot.answer_callback_query(call.id, responses[utils.lang(cid)]['already_unsaved'])
 
 
-@bot.callback_query_handler(func=lambda call: call.data.startswith('report'))
+@bot.callback_query_handler(func=lambda call: call.data.startswith('r '))
 def callback_report(call):
     cid = call.message.chat.id
     reported_memes = users.find_one(str(cid))['reported']

@@ -55,15 +55,15 @@ def callback_start(call):
     prev_meme = chat_memes[-1] if chat_memes else None
     next_button = types.InlineKeyboardButton('->', callback_data='newmeme')
     if prev_meme:
-        prev_button = types.InlineKeyboardButton('<-', callback_data=f'meme {prev_meme}')
+        prev_button = types.InlineKeyboardButton('<-', callback_data=f'm {prev_meme}')
         keyboard.add(prev_button, next_button)
     else:
         keyboard.add(next_button)
     meme = utils.random_meme(cid)
     if meme:
-        save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['save_meme'], callback_data=f'save {meme}')
+        save_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['save_meme'], callback_data=f's {meme}')
         keyboard.add(save_button)
-        report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'report {meme}')
+        report_button = types.InlineKeyboardButton(responses[utils.lang(cid)]['report_meme'], callback_data=f'r {meme}')
         keyboard.add(report_button)
         bot.send_photo(cid, meme, caption=f'<code>{meme}</code>', reply_markup=keyboard, parse_mode='html')
     else:
